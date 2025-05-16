@@ -11,7 +11,7 @@ export const SearchResult = ({ market, handleMarketSelect }: SearchResultProps) 
             <div className="flex items-center space-x-2">
                 <div className="flex items-center -space-x-1">
                     <CryptoIcon symbol={market.baseAsset} size="sm" />
-                    <CryptoIcon symbol={market.quoteAsset} size="sm" />
+                    {/*<CryptoIcon symbol={market.quoteAsset} size="sm" />*/}
                 </div>
                 <span className="text-text-primary">{market.baseAsset}/{market.quoteAsset}</span>
             </div>

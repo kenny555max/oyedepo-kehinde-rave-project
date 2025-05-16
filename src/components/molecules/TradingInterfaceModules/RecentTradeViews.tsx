@@ -7,7 +7,7 @@ export const RecentTradesView: React.FC<RecentTradesViewProps> = ({ trades }) =>
     return (
         <div>
             <TableHeaderRow />
-            <div className="max-h-96 overflow-y-auto">
+            <div className="max-h-96 scrollable-element overflow-y-auto">
                 {trades.map((trade, idx) => (
                     <OrderRow
                         key={`trade-${idx}`}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {cn} from "../../utils/cn.ts";
+import {cn} from "../../lib/utils/cn.ts";
 
 interface CurrencyLabelProps {
     base: string;

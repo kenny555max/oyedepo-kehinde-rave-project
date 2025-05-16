@@ -50,6 +50,7 @@ export interface TabSwitcherProps {
         id: string;
         label: string;
     }[];
+    className?: string;
 }
 
 export interface OrderRowProps extends Order {
@@ -186,4 +187,83 @@ export type MarketType = {
 export interface SearchResultProps {
     market: MarketType;
     handleMarketSelect: (market: MarketType) => void;
+}
+
+export interface ApiResponse<T> {
+    success: boolean;
+    data?: T;
+    error?: string;
+    statusCode?: number;
+}
+
+// API Error types
+export type ApiError = {
+    message: string;
+    code: string;
+    statusCode: number;
+};
+
+// Toast types
+export type ToastType = 'success' | 'error' | 'warning' | 'info';
+
+export type Toast = {
+    id: string;
+    type: ToastType;
+    title: string;
+    message: string;
+    duration?: number;
+};
+
+// Auth types
+export type User = {
+    id: string;
+    email: string;
+    username: string;
+    preferences?: UserPreferences;
+};
+
+export type UserPreferences = {
+    theme: 'light' | 'dark';
+    currency: string;
+    favoriteMarkets: string[];
+};
+
+// State types
+export interface AppState {
+    markets: CryptoData[];
+    selectedMarket: CryptoData | null;
+    user: User | null;
+    isLoading: boolean;
+    favorites: string[];
+    theme: 'light' | 'dark';
+}
+
+// API Context types
+export interface ApiContextType {
+    get: <T>(url: string, params?: Record<string, any>) => Promise<ApiResponse<T>>;
+    post: <T>(url: string, data: any, params?: Record<string, any>) => Promise<ApiResponse<T>>;
+    put: <T>(url: string, data: any, params?: Record<string, any>) => Promise<ApiResponse<T>>;
+    delete: <T>(url: string, params?: Record<string, any>) => Promise<ApiResponse<T>>;
+}
+
+// Toast Context types
+export interface ToastContextType {
+    toasts: Toast[];
+    showToast: (toast: Omit<Toast, 'id'>) => void;
+    hideToast: (id: string) => void;
+}
+
+// App Context types
+export interface AppContextType {
+    state: AppState;
+    actions: {
+        setMarkets: (markets: CryptoData[]) => void;
+        setSelectedMarket: (market: CryptoData) => void;
+        setUser: (user: User | null) => void;
+        setLoading: (isLoading: boolean) => void;
+        addFavorite: (symbol: string) => void;
+        removeFavorite: (symbol: string) => void;
+        toggleTheme: () => void;
+        logout: () => void;
+    };
 }

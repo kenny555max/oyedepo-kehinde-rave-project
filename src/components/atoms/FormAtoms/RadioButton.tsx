@@ -1,4 +1,4 @@
-import {cn} from "../../../utils/cn.ts";
+import {cn} from "../../../lib/utils/cn.ts";
 
 interface RadioButtonProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
     label?: string;

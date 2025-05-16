@@ -1,4 +1,4 @@
-import {cn} from "../../utils/cn.ts";
+import {cn} from "../../lib/utils/cn.ts";
 
 type BadgeVariant = 'filled' | 'outline' | 'subtle';
 type BadgeColor = 'accent' | 'positive' | 'negative' | 'neutral';

@@ -1,4 +1,4 @@
-import {cn} from "../../utils/cn.ts";
+import {cn} from "../../lib/utils/cn.ts";
 
 interface GradientProgressBarProps {
     value: number; // 0-100

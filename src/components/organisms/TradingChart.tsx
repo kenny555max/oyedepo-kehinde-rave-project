@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     LineChart,
     BarChart,
@@ -11,6 +11,7 @@ import {
     Legend,
     ResponsiveContainer
 } from 'recharts';
+import {ChartHeader} from "../molecules/ChartHeader.tsx";
 
 // Data interface
 type CryptoData = {
@@ -111,6 +112,7 @@ export default function BitcoinTradingChart(): JSX.Element {
     const [currentPrice, setCurrentPrice] = useState<number>(36641.64);
     const [priceChange, setPriceChange] = useState<number>(2.33);
     const [amplitude, setAmplitude] = useState<number>(6.59);
+    const [activeTime, setActiveTime] = useState<string>('1D');
 
     useEffect(() => {
         setData(generateSampleData());
@@ -130,24 +132,14 @@ export default function BitcoinTradingChart(): JSX.Element {
     };
 
     return (
-        <div className="w-full h-full p-4 bg-gray-900 text-gray-200">
-            {/* Timeframe selector */}
-            {/*<div className="flex gap-4 mb-4">*/}
-            {/*    <div className="text-gray-400">Time</div>*/}
-            {/*    {['1H', '2H', '4H', '1D', '1W', '1M'].map((tf) => (*/}
-            {/*        <button*/}
-            {/*            key={tf}*/}
-            {/*            className={`px-3 py-1 rounded-full ${timeframe === tf ? 'bg-gray-700 text-white' : 'text-gray-400'}`}*/}
-            {/*            onClick={() => handleTimeframeChange(tf as Timeframe)}*/}
-            {/*        >*/}
-            {/*            {tf}*/}
-            {/*        </button>*/}
-            {/*    ))}*/}
-            {/*    <button className="text-gray-400 ml-4">Fx Indicators</button>*/}
-            {/*</div>*/}
+        <div className="w-full h-full p-4 bg-primary-border rounded-[8px] text-gray-200">
+            <ChartHeader
+                activeTime={activeTime}
+                onTimeChange={setActiveTime}
+            />
 
             {/* Price info */}
-            <div className="flex items-center gap-4 mb-4">
+            <div className="flex flex-wrap items-center gap-4 mb-4">
                 <div className="flex gap-2 items-center">
                     <input type="checkbox" className="w-4 h-4" checked readOnly />
                     <span>BTC/USD</span>

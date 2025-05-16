@@ -68,7 +68,7 @@ export default function PairTickerDropDown({ selectedMarket, dropdownRef, setSel
                 {['All', 'USD', 'BTC'].map((filter) => (
                     <button
                         key={filter}
-                        className={`px-4 py-2 text-sm ${activeFilter === filter ? 'text-accent border-b-2 border-accent' : 'text-text-secondary'}`}
+                        className={`line-height-16px p-2 text-sm ${activeFilter === filter ? 'bg-type-select-bg rounded-full' : 'text-text-secondary'}`}
                         onClick={() => setActiveFilter(filter)}
                     >
                         {filter}
@@ -76,7 +76,7 @@ export default function PairTickerDropDown({ selectedMarket, dropdownRef, setSel
                 ))}
             </div>
 
-            <div className="mt-2 max-h-60 overflow-y-auto">
+            <div className="mt-2 max-h-60 scrollable-element overflow-y-auto">
                 {filteredMarkets.length > 0 ? (
                     filteredMarkets.map((market) => (
                         <SearchResult handleMarketSelect={handleMarketSelect} market={market} />

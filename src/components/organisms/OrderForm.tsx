@@ -52,7 +52,7 @@ export const OrderForm: React.FC<OrderFormProps> = ({
     const buttonColorClass = formData.side === 'buy' ? 'bg-accent-gradient' : 'bg-negative';
 
     return (
-        <form onSubmit={handleSubmit} className="bg-primary-border p-2 rounded">
+        <form onSubmit={handleSubmit} className="p-2 rounded">
             <TradeSideSelector
                 activeSide={formData.side}
                 onChange={(side) => handleChange('side', side)}

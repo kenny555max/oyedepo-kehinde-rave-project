@@ -3,6 +3,39 @@
 @tailwind components;
 @tailwind utilities;
 
+/* scrollbar */
+/* Apply to a specific class or element */
+.scrollable-element {
+    overflow: auto;
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For IE and Edge */
+}
+
+/* Hide scrollbar for WebKit */
+.scrollable-element::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    background: transparent;
+}
+
+/* Show scrollbar on hover */
+.scrollable-element:hover::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* Track */
+.scrollable-element::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Thumb */
+.scrollable-element::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0.6);
+    border-radius: 10px;
+}
+
+
 .container{
     @apply 2xl:max-w-[1400px] mx-auto;
 }
@@ -25,6 +58,10 @@
 
 .text-body-lg{
     @apply font-[500] leading-[32px] text-[24px] text-text-primary;
+}
+
+.text-body-xl{
+    @apply font-[700] leading-[32px] text-[18px] text-text-primary;
 }
 
 .active-tab-button{

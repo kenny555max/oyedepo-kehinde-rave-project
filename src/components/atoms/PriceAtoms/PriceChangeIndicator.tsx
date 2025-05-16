@@ -1,4 +1,4 @@
-import {cn} from "../../../utils/cn.ts";
+import {cn} from "../../../lib/utils/cn.ts";
 
 interface PriceChangeIndicatorProps {
     value: number;

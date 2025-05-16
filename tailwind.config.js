@@ -11,6 +11,7 @@ export default {
         'primary-bg': '#20252B',
         'primary-border': '#262932',
         'secondary-border': '#32383F',
+        'light-dark-border-color': '#373B3F',
 
         // Accent Colors
         'accent': {
@@ -19,6 +20,9 @@ export default {
           mid: '#7847E1',
           pink: '#DD568D'
         },
+
+        // tab bg
+        'tab-bg': '#262932',
 
         // Text Colors
         'text-primary': '#FFFFFF',
@@ -34,7 +38,7 @@ export default {
         'click-bg': '#12171d',
 
         // active tab button color
-        'active-tab-button': '#21262c',
+        'active-tab-button': '#262932',
 
         // gradient
         'bg-gradient': 'linear-gradient(90deg, #483BEB 0%, #7847E1 47.92%, #DD568D 96.35%)',

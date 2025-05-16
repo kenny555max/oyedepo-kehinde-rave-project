@@ -1,3 +1,4 @@
+import type {Order, OrderType, TradingData} from "./types.ts";
 
 export const SAMPLE_MARKETS = [
     { symbol: 'BTCUSDT', baseAsset: 'BTC', quoteAsset: 'USDT', price: '23,234.60', change: '20.80', changePercent: '0.005', volume: '75,655.26' },
@@ -10,3 +11,55 @@ export const SAMPLE_MARKETS = [
     { symbol: 'DOTUSDT', baseAsset: 'DOT', quoteAsset: 'USDT', price: '6.78', change: '-0.12', changePercent: '-0.017', volume: '8,765.43' },
     { symbol: 'AVAXUSDT', baseAsset: 'AVAX', quoteAsset: 'USDT', price: '34.27', change: '0.65', changePercent: '0.019', volume: '9,876.54' }
 ];
+
+export const generateSampleData = (): TradingData => {
+    const basePrice = 36920.12;
+    const variation = 100;
+
+    // Generate sell orders (higher than base price)
+    const sellOrders: Order[] = Array(5).fill(0).map((_, idx) => {
+        const price = basePrice + (idx + 1) * (Math.random() * 10 + 5);
+        const amount = 0.758965;
+        return {
+            price,
+            amount,
+            total: price * amount,
+            type: 'sell'
+        };
+    }).reverse();
+
+    // Generate buy orders (lower than base price)
+    const buyOrders: Order[] = Array(5).fill(0).map((_, idx) => {
+        const price = basePrice - (idx + 1) * (Math.random() * 10 + 5);
+        const amount = 0.758965;
+        return {
+            price,
+            amount,
+            total: price * amount,
+            type: 'buy'
+        };
+    });
+
+    // Generate recent trades
+    const recentTrades: Order[] = Array(10).fill(0).map(() => {
+        const price = basePrice + (Math.random() * variation * 2 - variation);
+        const amount = 0.758965;
+        const type: OrderType = Math.random() > 0.5 ? 'buy' : 'sell';
+        return {
+            price,
+            amount,
+            total: price * amount,
+            type
+        };
+    });
+
+    return {
+        sellOrders,
+        buyOrders,
+        recentTrades,
+        currentPrice: {
+            price: basePrice,
+            change: 123.45
+        }
+    };
+};

@@ -6,9 +6,10 @@ import {Button} from "../atoms/ButtonAtoms/Button.tsx";
 type UserProfileProps = {
     username: string;
     avatar?: string;
+    onClick?: () => void;
 };
 
-const UserProfile: React.FC<UserProfileProps> = ({ username, avatar }) => {
+const UserProfile: React.FC<UserProfileProps> = ({ username, avatar, onClick }) => {
     return (
         <div className="flex items-center sm:gap-2">
             <Button className="sm:flex hidden justify-center bg-click-bg h-[48px] w-[181px] rounded-[8px] items-center gap-2 ml-2 text-text-primary">
@@ -24,7 +25,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ username, avatar }) => {
                         {avatar ? <img src={avatar} alt={username} className="w-full h-full rounded-full" /> : username[0]}
                     </div>
                 }
-                className={"block sm:hidden"}
+                className={"block md:hidden"}
                 onClick={() => console.log('called')}
                 variant="default"
             />
@@ -46,7 +47,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ username, avatar }) => {
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M7.20711 14.7929C7.59763 15.1834 7.59763 15.8166 7.20711 16.2071C6.81658 16.5976 6.18342 16.5976 5.79289 16.2071L2.29289 12.7071C1.90237 12.3166 1.90237 11.6834 2.29289 11.2929L5.79289 7.79289C6.18342 7.40237 6.81658 7.40237 7.20711 7.79289C7.59763 8.18342 7.59763 8.81658 7.20711 9.20711L5.41421 11H15C15.5523 11 16 11.4477 16 12C16 12.5523 15.5523 13 15 13L5.41421 13L7.20711 14.7929Z" fill="#A7B1BC"/>
                     </svg>
                 }
-                className={"sm:block hidden"}
+                className={"md:block hidden"}
                 onClick={() => console.log('called')}
                 variant="default"
             />
@@ -58,8 +59,8 @@ const UserProfile: React.FC<UserProfileProps> = ({ username, avatar }) => {
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.80005 23.9999C4.80005 23.1162 5.51639 22.3999 6.40005 22.3999H25.6C26.4837 22.3999 27.2001 23.1162 27.2001 23.9999C27.2001 24.8836 26.4837 25.5999 25.6 25.5999H6.40005C5.51639 25.5999 4.80005 24.8836 4.80005 23.9999Z" fill="#8D98AF"/>
                     </svg>
                 }
-                className={"block sm:hidden"}
-                onClick={() => console.log('called')}
+                className={"block md:hidden"}
+                onClick={onClick}
                 variant="default"
             />
         </div>
