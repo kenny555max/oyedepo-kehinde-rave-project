@@ -1,15 +1,16 @@
 import {X} from "lucide-react";
 import type {SearchProps} from "../../types.ts";
+import {cn} from "../../lib/utils/cn.ts";
 
-export const SearchComp = ({ searchQuery, setSearchQuery }: SearchProps) => {
+export const SearchComp = ({ searchQuery, setSearchQuery, className }: SearchProps) => {
     return(
-        <div className="relative">
+        <div className={cn("relative", className)}>
             <input
                 type="text"
                 placeholder="Search"
-                className="w-full bg-hover-bg border border-light-dark-border-color rounded-md px-8 py-2 text-text-primary text-sm focus:outline-none focus:ring-1 focus:ring-accent"
+                className={cn(`w-full bg-hover-bg border border-light-dark-border-color rounded-md px-8 py-2 text-text-primary text-sm focus:outline-none focus:ring-1 focus:ring-accent`)}
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => setSearchQuery && setSearchQuery(e.target.value)}
             />
             <span className="absolute left-2 top-2.5 w-4 h-4 text-text-secondary">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -21,7 +22,7 @@ export const SearchComp = ({ searchQuery, setSearchQuery }: SearchProps) => {
             {searchQuery && (
                 <button
                     className="absolute right-2 top-2.5"
-                    onClick={() => setSearchQuery('')}
+                    onClick={() => setSearchQuery && setSearchQuery('')}
                 >
                     <X className="w-4 h-4 text-text-secondary" />
                 </button>

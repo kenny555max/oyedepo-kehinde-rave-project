@@ -3,14 +3,16 @@ import Logo from '../atoms/Logo';
 import Navigation from '../molecules/Navigation';
 import UserProfile from '../molecules/UserProfile';
 import {Separator} from "../atoms/Separator.tsx";
+import {SearchComp} from "../atoms/Search.tsx";
 
 const Header: React.FC = () => {
     const [showMenu, setShowMenu] = useState(false);
 
     const navLinks = [
-        { label: 'Exchange', isActive: true, href: '/exchange' },
-        { label: 'Wallets', isActive: false, href: '/wallets' },
-        { label: 'Reqqu Hub', isActive: false, href: '/reqqu-hub' },
+        { label: 'Dashboard', isActive: true, href: '/dashboard' },
+        { label: 'Markets', isActive: false, href: '/Markets' },
+        { label: 'Wallet', isActive: false, href: '/wallets' },
+        { label: 'Profile', isActive: false, href: '/profile' },
     ];
 
     return (
@@ -21,6 +23,7 @@ const Header: React.FC = () => {
                         <Logo />
                         <Separator className={"bg-muted-color md:block hidden"} orientation="vertical" />
                         <Navigation showMenu={showMenu} links={navLinks} />
+                        <SearchComp className={"w-[400px] xl:block hidden"} />
                     </div>
                     <UserProfile onClick={() => setShowMenu(!showMenu)} username="Olakunle Temmy" avatar="" />
                 </div>

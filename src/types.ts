@@ -29,18 +29,18 @@ export interface TableHeaderProps {
 export interface TableRowProps {
     children: React.ReactNode;
     highlighted?: boolean;
-    type?: OrderType;
+    type?: any;
 }
 
 export interface TableCellProps {
     children: React.ReactNode;
     className?: string;
-    type?: OrderType;
+    type?: any;
 }
 
 export interface TotalBarProps {
     percentage: number;
-    type: OrderType;
+    type: any;
 }
 
 export interface TabSwitcherProps {
@@ -170,8 +170,9 @@ export type CryptoIconProps = {
 };
 
 export interface SearchProps {
-    searchQuery: string;
-    setSearchQuery: (query: string) => void;
+    searchQuery?: string;
+    setSearchQuery?: (query: string) => void;
+    className?: string;
 }
 
 export type MarketType = {

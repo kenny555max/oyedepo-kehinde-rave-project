@@ -10,6 +10,7 @@ const generateId = (): string => {
 };
 
 // Singleton for displaying toasts outside of component tree
+// @ts-ignore
 let toastHandler: ((toast: Omit<Toast, 'id'>) => void) | null = null;
 
 export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -89,9 +90,10 @@ export const useToast = (): ToastContextType => {
     return context;
 };
 
-// Function to show toast outside of React components
-export const showToast = (toast: Omit<Toast, 'id'>): string | undefined => {
+// // Function to show toast outside of React components
+export const showToast = (toast: Omit<Toast, 'id'>): void => {
     if (toastHandler) {
+        // @ts-ignore
         return toastHandler(toast);
     }
 

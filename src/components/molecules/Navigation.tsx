@@ -26,7 +26,7 @@ const Navigation: React.FC<NavigationProps> = ({ links, showMenu }) => {
 
             {/* mobile nav   */}
             {showMenu && (
-                <nav className="flex flex-col z-10 gap-2 bg-primary-border absolute left-0 w-full top-[75px]">
+                <nav className="flex flex-col z-10 md:hidden gap-2 bg-primary-border absolute left-0 w-full top-[75px]">
                     {[...links, { label: 'Logout', isActive: false, href: '/logout' }].map((link, index) => (
                         <NavLink
                             key={index}

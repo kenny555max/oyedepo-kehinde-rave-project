@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import {useState, useEffect, type JSX} from 'react';
 import {
     LineChart,
     BarChart,
@@ -8,7 +8,6 @@ import {
     YAxis,
     CartesianGrid,
     Tooltip,
-    Legend,
     ResponsiveContainer
 } from 'recharts';
 import {ChartHeader} from "../molecules/ChartHeader.tsx";
@@ -58,46 +57,46 @@ const generateSampleData = (): CryptoData[] => {
     return data;
 };
 
-interface CandleStickProps {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    low: number;
-    high: number;
-    open: number;
-    close: number;
-}
+// interface CandleStickProps {
+//     x: number;
+//     y: number;
+//     width: number;
+//     height: number;
+//     low: number;
+//     high: number;
+//     open: number;
+//     close: number;
+// }
 
 // Custom CandleStick component using Recharts primitives
-const CandleStick: React.FC<CandleStickProps> = ({ x, y, width, height, low, high, open, close }) => {
-    const isUp = close > open;
-    const color = isUp ? '#26a69a' : '#ef5350';
-    const bodyHeight = Math.abs(open - close);
-    const bodyY = Math.min(open, close);
-
-    return (
-        <g>
-            {/* Wick line from high to low */}
-            <line
-                x1={x + width / 2}
-                y1={y + height - high}
-                x2={x + width / 2}
-                y2={y + height - low}
-                stroke={color}
-                strokeWidth={1}
-            />
-            {/* Candle body */}
-            <rect
-                x={x}
-                y={y + height - bodyY - bodyHeight}
-                width={width}
-                height={Math.max(1, bodyHeight)}
-                fill={color}
-            />
-        </g>
-    );
-};
+// const CandleStick: React.FC<CandleStickProps> = ({ x, y, width, height, low, high, open, close }) => {
+//     const isUp = close > open;
+//     const color = isUp ? '#26a69a' : '#ef5350';
+//     const bodyHeight = Math.abs(open - close);
+//     const bodyY = Math.min(open, close);
+//
+//     return (
+//         <g>
+//             {/* Wick line from high to low */}
+//             <line
+//                 x1={x + width / 2}
+//                 y1={y + height - high}
+//                 x2={x + width / 2}
+//                 y2={y + height - low}
+//                 stroke={color}
+//                 strokeWidth={1}
+//             />
+//             {/* Candle body */}
+//             <rect
+//                 x={x}
+//                 y={y + height - bodyY - bodyHeight}
+//                 width={width}
+//                 height={Math.max(1, bodyHeight)}
+//                 fill={color}
+//             />
+//         </g>
+//     );
+// };
 
 const formatPrice = (price: number): string => {
     return new Intl.NumberFormat('en-US', {
@@ -108,9 +107,13 @@ const formatPrice = (price: number): string => {
 
 export default function BitcoinTradingChart(): JSX.Element {
     const [data, setData] = useState<CryptoData[]>([]);
+    // @ts-ignore
     const [timeframe, setTimeframe] = useState<Timeframe>('1D');
+    // @ts-ignore
     const [currentPrice, setCurrentPrice] = useState<number>(36641.64);
+    // @ts-ignore
     const [priceChange, setPriceChange] = useState<number>(2.33);
+    // @ts-ignore
     const [amplitude, setAmplitude] = useState<number>(6.59);
     const [activeTime, setActiveTime] = useState<string>('1D');
 
@@ -118,6 +121,7 @@ export default function BitcoinTradingChart(): JSX.Element {
         setData(generateSampleData());
     }, []);
 
+    // @ts-ignore
     const handleTimeframeChange = (tf: Timeframe): void => {
         setTimeframe(tf);
         // In a real app, you would fetch new data based on timeframe
@@ -203,7 +207,10 @@ export default function BitcoinTradingChart(): JSX.Element {
                         />
                         <YAxis stroke="#666" orientation="right" tick={{ fontSize: 10 }} />
                         <Tooltip formatter={(value) => [value, 'Volume']} contentStyle={{ backgroundColor: '#222', border: '1px solid #444' }} labelStyle={{ color: '#999' }} />
-                        <Bar dataKey="volume" fill={(data) => (data.isUp ? '#26a69a' : '#ef5350')} isAnimationActive={false} />
+                        {
+                            // @ts-ignore
+                            <Bar dataKey="volume" fill={(data) => (data.isUp ? '#26a69a' : '#ef5350')}
+                              isAnimationActive={false}/>}
                     </BarChart>
                 </ResponsiveContainer>
             </div>

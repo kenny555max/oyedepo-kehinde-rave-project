@@ -9,6 +9,8 @@ interface DropdownProps {
     options: DropdownOption[];
     value: string;
     onChange: (value: string) => void;
+    onFocus: () => void;
+    onBlur: () => void;
     label?: string;
     helpIcon?: boolean;
     className?: string;

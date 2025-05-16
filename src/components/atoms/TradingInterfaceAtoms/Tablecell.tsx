@@ -6,6 +6,7 @@ interface TableCellProps {
     className?: string;
     align?: 'left' | 'center' | 'right';
     highlight?: boolean;
+    type?: any
 }
 
 export const TableCell: React.FC<TableCellProps> = ({

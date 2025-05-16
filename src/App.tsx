@@ -1,30 +1,39 @@
-import Header from "./components/organisms/Header.tsx";
-import CryptoTicker from "./components/templates/CryptoTicker.tsx";
-import {TradingPlatformTemplate} from "./components/templates/TradingPlatformTemplate.tsx";
 import 'resize-observer-polyfill';
-import {AppProvider} from "./lib/context/AppContext.tsx";
-import {ToastProvider} from "./lib/context/ToastContext.tsx";
-import MobileNavigationTabTemplate from "./components/templates/MobileNavigationTabTemplate.tsx";
+import { Suspense, lazy } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AppProvider } from "./lib/context/AppContext";
+import { ToastProvider } from "./lib/context/ToastContext";
+import Layout from './components/Layout.tsx';
+import LoadingSpinner from './components/LoadingSpinner';
+import ErrorBoundary from './components/ErrorBoundary';
+
+// @ts-ignore
+import './index.css'
+
+const Home = lazy(() => import('./pages/HomePage'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
     return (
-        <AppProvider>
-            <ToastProvider>
-                <div className="min-h-screen bg-primary-bg text-text-primary">
-                    <Header />
-                    <CryptoTicker />
-                    <main className="p-4">
-                        <div className='container'>
-                            {/* Main content goes here */}
-                            <div>
-                                <TradingPlatformTemplate />
-                                <MobileNavigationTabTemplate />
-                            </div>
-                        </div>
-                    </main>
-                </div>
-            </ToastProvider>
-        </AppProvider>
+        <ErrorBoundary>
+            <BrowserRouter>
+                <AppProvider>
+                    <ToastProvider>
+                        <Layout>
+                            <Suspense fallback={<LoadingSpinner />}>
+                                <Routes>
+                                    <Route path="/" element={<Home />} />
+                                    <Route path="/dashboard" element={<Dashboard />} />
+                                    <Route path="/404" element={<NotFound />} />
+                                    <Route path="*" element={<Navigate to="/404" replace />} />
+                                </Routes>
+                            </Suspense>
+                        </Layout>
+                    </ToastProvider>
+                </AppProvider>
+            </BrowserRouter>
+        </ErrorBoundary>
     );
 }
 
